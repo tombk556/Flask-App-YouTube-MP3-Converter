@@ -4,27 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/style.css">
     <title>YouTube Mp3 Downloader</title>
-</head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head> 
 <body>
-    <h1>YouTube Mp3 Downloader</h1>
-    <!-- form -->
-    <div class="form">
-        <form action="{{ url_for("gfg") }}" method="post">
-            <!-- url input -->
-            <label for="url">YouTube URL </label>
-            <br>
-            <input type="text" id="url" name="url" placeholder="YouTube URL" size=60>
-            <br>
-            <!-- name input -->
-            <label for="lastname">Name </label>
-            <br>
-            <input type="text" id="name" name="name" placeholder="Song Name" size=60>
-            <br>
-            <br>
-            <button type="submit">Submit</button>
-        </form>     
-    </div>
+      <form action="{{ url_for("gfg") }}" method="post">
+        <h1>YouTube MP3 Downloader</h1>
+        <div class="input-container">
+            <input type="text" placeholder="YouTube URL" id="url" name="url">
+            <input type="text" placeholder="Song" id="song" name="song">
+            <input type="text" placeholder="Artist" id="artist" name="artist">
+        </div>
+        <button type="submit">Download</button>
+      </form>  
 </body>
 </html>
