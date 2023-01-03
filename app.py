@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, send_file, url_for, redirect, flash
+from flask import Flask, request, render_template, send_file, redirect, url_for
 from src.downloader import YouTubeMp3Downloader
 # Flask constructor
 app = Flask(__name__)  
