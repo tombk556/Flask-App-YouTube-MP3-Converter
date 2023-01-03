@@ -20,15 +20,15 @@ class YouTubeMp3Downloader:
         ssl._create_default_https_context = ssl._create_unverified_context
         youtubeObj = YouTube(self.url_link)
         youtubeObj = youtubeObj.streams.get_highest_resolution()
-        youtubeObj.download("video")
+        youtubeObj.download("content")
         
         # convert to mp3        
         # get the mp4 file name in the /video folder
-        mypath = "video"
+        mypath = "content"
         mp4_file_name = [f for f in listdir(mypath) if isfile(join(mypath, f))][0]
         
-        mp4_file_location = f"video/{mp4_file_name}"
-        mp3_file = f"audio/{self.name}.mp3"
+        mp4_file_location = f"content/{mp4_file_name}"
+        mp3_file = f"content/{self.name}.mp3"
         
         # Convert to mp3
         videoClip = VideoFileClip(mp4_file_location)

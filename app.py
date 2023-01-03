@@ -30,7 +30,7 @@ def gfg():
          print("Audio File Name: ", audio_file_name)
          obj = YouTubeMp3Downloader(url_link=url, name=audio_file_name)
          obj.download()
-         audio_file = f"audio/{audio_file_name}.mp3"
+         audio_file = f"content/{audio_file_name}.mp3"
          return send_file(audio_file, as_attachment=True), os.remove(audio_file)
          
     return render_template('index.html')
