@@ -1,6 +1,7 @@
 import os
 from flask import Flask, jsonify, request, render_template, send_file, redirect, url_for
 from src.downloader import YouTubeMp3Downloader
+from src.changeMeta import ChangeMetaData
 # Flask constructor
 app = Flask(__name__)
 
@@ -13,29 +14,18 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/send', methods=["POST"])
+@app.route('/download', methods=["POST"])
 def process():
-    data=request.get_json()
-    url=data.get('url') + "__"
-    title=data.get('title') + "__"
-    artist=data.get('artist') + "__"
-    print(url, title, artist)
-    response=jsonify({"url": url, "title":title, "artist": artist})
-    
-    return response
-
-# @app.route('/home', methods=["GET", "POST"])
-# def gfg():
-#     if request.method == "POST":
-#         url = request.form.get("url")
-#         title = request.form.get("title")
-#         artist = request.form.get("artist")
-#         audio_file_name = f"{artist} - {title}"
-#         print(audio_file_name)
-#         print(url)
-
-#     return render_template('index.html')
-
+    url = request.form['url']
+    title = request.form['title']
+    artist = request.form['artist']
+    audio_file_name = f"{artist} - {title}"
+    obj = YouTubeMp3Downloader(url_link=url, name=audio_file_name)
+    obj.download()
+    audio_file = f"audio_content/{audio_file_name}.mp3"
+    ChangeMetaData(audiofile = audio_file).change(title=title, artist=artist)
+    audio_file = f"audio_content/{audio_file_name}.mp3" 
+    return send_file(audio_file, as_attachment=True), os.remove(f'audio_content/{audio_file_name}.mp3'), os.remove('./thumbnail.jpg')
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
