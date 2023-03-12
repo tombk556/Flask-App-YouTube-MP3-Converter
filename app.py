@@ -1,13 +1,8 @@
 import os
-from flask import Flask, jsonify, request, render_template, send_file, redirect, url_for
+from flask import Flask, request, render_template, send_file
 from src.downloader import YouTubeMp3Downloader
 from src.changeMeta import ChangeMetaData
-# Flask constructor
 app = Flask(__name__)
-
-# A decorator used to tell the application
-# which URL is associated function
-
 
 @app.route('/')
 def home():
