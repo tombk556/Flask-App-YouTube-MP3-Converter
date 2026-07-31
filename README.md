@@ -1,7 +1,29 @@
-# YouTubeMp3Downloader_V1.0
+# YouTube MP3 Downloader
 
-Version One: just a simple form to download and convert YouTube videos to mp3. works fine locally and on heroku! user experience for sure low :D
+Simple Flask app to download a YouTube video and convert it to MP3.
 
+## Run locally
 
-docker build -t myflaskapp .
-docker run -p 8000:8000 myflaskapp
+```bash
+pip install -r requirements.txt
+python3 app.py
+```
+
+Requires `ffmpeg` installed on your system.
+
+App runs at http://localhost:5000
+
+## Run with Docker
+
+```bash
+docker build -t ytmp3 .
+docker run --rm -p 8000:8000 ytmp3
+```
+
+## Run with Docker Compose
+
+```bash
+docker compose up
+```
+
+App runs at http://localhost:8000
